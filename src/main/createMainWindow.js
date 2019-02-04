@@ -8,6 +8,9 @@ class MainWindow {
       this.window = null;
     });
   }
+  sendJson(json) {
+    this.window.webContents.send('SEND_JSON', json);
+  }
 }
 
 function createMainWindow() {
