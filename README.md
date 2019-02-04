@@ -1,5 +1,4 @@
-# mindmup-electron-example
-This electron application is clone of [mapjs-webpack-example](https://github.com/mindmup/mapjs-webpack-example).  
+# mindmup-electron
 
 ## Installation
 Use node 8.
