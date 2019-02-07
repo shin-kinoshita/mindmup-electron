@@ -57,8 +57,11 @@ const init = function () {
       }
     }
   });
-  ipcRenderer.on('SEND_JSON_PATH', (_e, map) => {
-    mapModel.setIdea(content(map));
+  ipcRenderer.on('SEND_MAP_JSON', (_e, json) => {
+    mapModel.setIdea(content(json));
+  });
+  ipcRenderer.on('REQUEST_MAP_JSON', () => {
+    ipcRenderer.send('RETURN_MAP_JSON', mapModel.getIdea())
   });
 };
 document.addEventListener('DOMContentLoaded', init);

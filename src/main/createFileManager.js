@@ -1,8 +1,11 @@
 import fs from 'fs';
 
 class FileManager {
-  readFile(path) {
+  readMapJson(path) {
     return JSON.parse(fs.readFileSync(path, 'utf8'));
+  }
+  saveMapJson(path, mapJson) {
+    fs.writeFileSync(path, JSON.stringify(mapJson));
   }
 }
 

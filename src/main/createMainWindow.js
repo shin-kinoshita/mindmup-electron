@@ -1,4 +1,4 @@
-import { BrowserWindow } from 'electron';
+import { BrowserWindow, ipcMain } from 'electron';
 
 class MainWindow {
   constructor() {
@@ -9,7 +9,13 @@ class MainWindow {
     });
   }
   sendJson(json) {
-    this.window.webContents.send('SEND_JSON', json);
+    this.window.webContents.send('SEND_MAP_JSON', json);
+  }
+  fetchMapJson() {
+    return new Promise((resolve) => {
+      this.window.webContents.send('REQUEST_MAP_JSON');
+      ipcMain.once('RETURN_MAP_JSON', (_e, mapJson) => resolve(mapJson));
+    });
   }
 }
 
