@@ -19,10 +19,19 @@ function saveAsNewFile() {
     .then(([file, mapJson]) => fileManager.saveMapJson(file, mapJson));
 }
 
+function saveFile() {
+  if (!fileManager.hasMapJsonPath()) {
+    saveAsNewFile();
+  } else {
+    mainWindow.fetchMapJson()
+      .then((mapJson) => fileManager.overwriteMapJson(mapJson));
+  }
+}
+
 app.on('ready', () => {
   mainWindow = createMainWindow();
   fileManager = createFileManager();
-  setAppMenu({ openFile, saveAsNewFile });
+  setAppMenu({ openFile, saveAsNewFile, saveFile });
 });
 
 app.on('window-all-closed', () => {
