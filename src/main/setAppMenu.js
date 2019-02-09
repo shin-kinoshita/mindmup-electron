@@ -13,7 +13,10 @@ function setAppMenu(options) {
     {
       label: 'Insert',
       submenu: [
-        {label: 'Root node', accelerator: 'Cmd+D', click: () => options.sendCommand('insertRoot', ['keyboard', null]) }
+        { label: 'Root node', accelerator: 'Cmd+D', click: () => options.sendCommand('insertRoot', ['keyboard']) },
+        { label: 'Child node', accelerator: 'Tab', click: () => options.sendCommand('addSubIdea', ['keyboard']) },
+        { label: 'Parent node', accelerator: 'Shift+Tab', click: () => options.sendCommand('insertIntermediate', ['keyboard']) },
+        { label: 'Sibling node', accelerator: 'Return', click: () => options.sendCommand('addSiblingIdea', ['keyboard']) },
       ]
     },
     {
