@@ -11,6 +11,12 @@ function setAppMenu(options) {
       ],
     },
     {
+      label: 'Insert',
+      submenu: [
+        {label: 'Root node', accelerator: 'Cmd+D', click: () => options.sendCommand('insertRoot', ['keyboard', null]) }
+      ]
+    },
+    {
       label: 'Edit',
       submenu: [
         {label: 'Copy', accelerator: 'CmdOrCtrl+C', role: 'copy'},

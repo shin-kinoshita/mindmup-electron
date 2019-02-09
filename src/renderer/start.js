@@ -63,5 +63,9 @@ const init = function () {
   ipcRenderer.on('REQUEST_MAP_JSON', () => {
     ipcRenderer.send('RETURN_MAP_JSON', mapModel.getIdea())
   });
+  ipcRenderer.on('SEND_COMMAND', (_e, payload) => {
+    const { command, params } = payload;
+    mapModel[command](...params);
+  });
 };
 document.addEventListener('DOMContentLoaded', init);

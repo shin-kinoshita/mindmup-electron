@@ -17,6 +17,9 @@ class MainWindow {
       ipcMain.once('RETURN_MAP_JSON', (_e, mapJson) => resolve(mapJson));
     });
   }
+  sendCommand(command, params) {
+    this.window.webContents.send('SEND_COMMAND', { command, params });
+  }
 }
 
 function createMainWindow() {
