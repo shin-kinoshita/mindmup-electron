@@ -19,10 +19,6 @@ function saveAsNewFile() {
     .then(([file, mapJson]) => fileManager.saveMapJson(file, mapJson));
 }
 
-function sendCommand(command, params) {
-  mainWindow.sendCommand(command, params);
-}
-
 function saveFile() {
   if (!fileManager.hasMapJsonPath()) {
     saveAsNewFile();
@@ -30,6 +26,10 @@ function saveFile() {
     mainWindow.fetchMapJson()
       .then((mapJson) => fileManager.overwriteMapJson(mapJson));
   }
+}
+
+function sendCommand(command, params) {
+  mainWindow.sendCommand(command, params);
 }
 
 app.on('ready', () => {

@@ -2,7 +2,7 @@ import fs from 'fs';
 
 class FileManager {
   hasMapJsonPath() {
-    return this.mapJsonPath !== '';
+    return (this.mapJsonPath && this.mapJsonPath.length > 0);
   }
   readMapJson(path) {
     this.mapJsonPath = path;
