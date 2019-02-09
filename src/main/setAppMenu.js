@@ -22,10 +22,8 @@ function setAppMenu(options) {
     {
       label: 'Edit',
       submenu: [
-        {label: 'Copy', accelerator: 'CmdOrCtrl+C', role: 'copy'},
-        {label: 'Paste', accelerator: 'CmdOrCtrl+V', role: 'paste'},
-        {label: 'Cut', accelerator: 'CmdOrCtrl+X', role: 'cut'},
-        {label: 'Select All', accelerator: 'CmdOrCtrl+A', role: 'selectall'},
+        { label: 'Undo', accelerator: 'CmdOrCtrl+Z', click: () => options.sendCommand('undo', ['keyboard']) },
+        { label: 'Redo', accelerator: 'Shift+CmdOrCtrl+Z', click: () => options.sendCommand('redo', ['keyboard']) },
       ],
     },
     {
