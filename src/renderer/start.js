@@ -31,7 +31,7 @@ const init = function () {
   container.domMapWidget(console, mapModel, false, imageInsertController);
   jQuery('body').mapToolbarWidget(mapModel);
   jQuery('body').attachmentEditorWidget(mapModel);
-  mapModel.setIdea(content(require('./example-map.json')));
+  mapModel.setIdea(content({}));
 
 
   jQuery('#linkEditWidget').linkEditWidget(mapModel);
