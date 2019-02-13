@@ -1,40 +1,45 @@
 import { app } from 'electron';
 import setAppMenu from './setAppMenu';
-import createMainWindow from './createMainWindow';
+import createWindowManager from './createWindowManager';
 import showOpenFileDialog from './showOpenFileDialog';
 import createFileManager from './createFileManager';
 import showSaveAsNewFileDialog from './showSaveFileDialog';
 
-let mainWindow = null;
+let windowManager = null;
 let fileManager = null;
 
 function openFile() {
   showOpenFileDialog()
-    .then((file) => fileManager.readMapJson(file))
-    .then((json) => mainWindow.sendJson(json));
+    .then((path) => {
+      windowManager.setFocusedWindowPath(path);
+      return fileManager.readMapJson(path);
+    })
+    .then((json) => windowManager.displayMap(json));
 }
 
 function saveAsNewFile() {
-  Promise.all([showSaveAsNewFileDialog(), mainWindow.fetchMapJson()])
-    .then(([file, mapJson]) => fileManager.saveMapJson(file, mapJson));
+  Promise.all([showSaveAsNewFileDialog(), windowManager.fetchMap()])
+    .then(([path, mapJson]) => fileManager.saveMapJson(path, mapJson));
 }
 
 function saveFile() {
-  if (!fileManager.hasMapJsonPath()) {
-    saveAsNewFile();
+  const path = windowManager.getFocusedWindowPath();
+  if (path) {
+    windowManager.fetchMap()
+      .then((mapJson) => fileManager.saveMapJson(path, mapJson));
   } else {
-    mainWindow.fetchMapJson()
-      .then((mapJson) => fileManager.overwriteMapJson(mapJson));
+    saveAsNewFile();
   }
 }
 
 function sendCommand(command, params) {
-  mainWindow.sendCommand(command, params);
+  windowManager.sendCommand(command, params);
 }
 
 app.on('ready', () => {
-  mainWindow = createMainWindow();
   fileManager = createFileManager();
+  windowManager = createWindowManager();
+  windowManager.addWindow();
   setAppMenu({ openFile, saveAsNewFile, saveFile, sendCommand });
 });
 
@@ -46,6 +51,6 @@ app.on('window-all-closed', () => {
 
 app.on('activate', (_e, hasVisibleWindows) => {
   if (!hasVisibleWindows) {
-    mainWindow = createMainWindow();
+    windowManager.addWindow();
   }
 });
