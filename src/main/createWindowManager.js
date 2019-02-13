@@ -10,16 +10,16 @@ class WindowManager {
   getFocusedWindowPath() {
     return this.getFocusedWindow().getRepresentedFilename();
   }
-  addWindow(path) {
+  addWindow() {
     let window = new BrowserWindow({ width: 800, height: 600 });
     window.loadURL(`file://${__dirname}/../../index.html`);
     window.on('closed', () => {
       window = null;
     });
-    if (path) {
-      window.setRepresentedFilename(path);
-    }
     return window;
+  }
+  addTab() {
+    this.getFocusedWindow().addTabbedWindow(this.addWindow());
   }
   displayMap(json) {
     this.getFocusedWindow().webContents.send('SEND_MAP_JSON', json);

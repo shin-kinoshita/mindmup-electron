@@ -6,6 +6,7 @@ function setAppMenu(options) {
       label: 'File',
       submenu: [
         { label: 'Open', accelerator: 'CmdOrCtrl+O', click: () => options.openFile() },
+        { label: 'New Tab', accelerator: 'CmdOrCtrl+T', click: () => options.createNewTab() },
         { label: 'Save', accelerator: 'CmdOrCtrl+S', click: () => options.saveFile() },
         { label: 'Save As...', click: () => options.saveAsNewFile() },
       ],

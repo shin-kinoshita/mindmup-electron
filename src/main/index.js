@@ -17,6 +17,10 @@ function openFile() {
     .then((json) => windowManager.displayMap(json));
 }
 
+function createNewTab() {
+  windowManager.addTab();
+}
+
 function saveAsNewFile() {
   Promise.all([showSaveAsNewFileDialog(), windowManager.fetchMap()])
     .then(([path, mapJson]) => fileManager.saveMapJson(path, mapJson));
@@ -40,7 +44,7 @@ app.on('ready', () => {
   fileManager = createFileManager();
   windowManager = createWindowManager();
   windowManager.addWindow();
-  setAppMenu({ openFile, saveAsNewFile, saveFile, sendCommand });
+  setAppMenu({ openFile, saveAsNewFile, saveFile, createNewTab, sendCommand });
 });
 
 app.on('window-all-closed', () => {
