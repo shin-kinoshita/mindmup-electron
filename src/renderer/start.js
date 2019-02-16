@@ -57,6 +57,10 @@ const init = function () {
       }
     }
   });
+  jQuery('.theme').on('change', (e) => {
+    mapModel.getIdea().attr.theme = e.target.value;
+    mapModel.rebuildRequired();
+  });
   ipcRenderer.on('SEND_MAP_JSON', (_e, json) => {
     mapModel.setIdea(content(json));
   });
