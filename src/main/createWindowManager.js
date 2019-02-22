@@ -21,6 +21,9 @@ class WindowManager {
   addTab() {
     this.getFocusedWindow().addTabbedWindow(this.addWindow());
   }
+  closeTab() {
+    this.getFocusedWindow().close();
+  }
   displayMap(json) {
     this.getFocusedWindow().webContents.send('SEND_MAP_JSON', json);
   }
