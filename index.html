@@ -23,9 +23,6 @@
 
 		</style>
 		<div id="testcontrols">
-			<input type="button" class="resetView" value="0"/>
-			<input type="button" class="scaleUp" value="+"/>
-			<input type="button" class="scaleDown" value="-"/>
 			<input type="button" class="addSubIdea" value="add"/>
 			<input type="button" onclick="mapModel.insertIntermediateGroup('click', {group:'supporting'})" value="parent reason"/>
 			<input type="button" onclick="mapModel.addGroupSubidea('click', {group:'supporting'})" value="supporting group"/>
@@ -36,15 +33,12 @@
 			<input type="button" class="toggleCollapse" value="exp/col"/>
 			<input type="button" onclick="mapModel.setInputEnabled(false)" value="disable"/>
 			<input type="button" onclick="mapModel.setInputEnabled(true)" value="enable"/>
-			<input type="button" class="undo" value="undo"/>
-			<input type="button" class="redo" value="redo"/>
 			<input type="button" data-mm-action="export-image" value="Export To Image"/>
 			<input type="button" class="cut" value="cut"/>
 			<input type="button" class="copy" value="copy"/>
 			<input type="button" class="paste" value="paste"/>
 			<input type="button" class="openAttachment" value="open attachment"/>
 			<input type="button" class="toggleAddLinkMode" value="add link"/>
-			<input type="button" class="insertRoot" value="add root node"/>
 			<input type="button" class="makeSelectedNodeRoot" value="make root"/>
 			Background: <input type="text" class='updateStyle' data-mm-target-property='background'/>
 			Frames: <span id="framerate"></span>

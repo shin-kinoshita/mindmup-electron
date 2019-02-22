@@ -30,6 +30,9 @@ function setAppMenu(options) {
     {
       label: 'View',
       submenu: [
+        { label: 'Zoom in', accelerator: 'Z', click: () => options.sendCommand('scaleUp', ['keyboard']) },
+        { label: 'Zoom out', accelerator: 'Shift+Z', click: () => options.sendCommand('scaleDown', ['keyboard']) },
+        { label: 'Recenter view', accelerator: 'Cmd+0', click: () => options.sendCommand('resetView', ['keyboard']) },
         {
           label: 'Toggle DevTools',
           accelerator: 'Alt+Command+I',
